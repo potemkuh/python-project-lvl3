@@ -11,7 +11,7 @@ def download(link, dir=None):
     html = html.text
 
     url = link.replace("https://", "")
-    file_name = re.sub('/', '-', url) + '.html'
+    file_name = re.sub(r'[/.]', '-', url) + '.html'
     path = os.path.join(dir, file_name)
     with open(path, 'w') as f:
         f.write(html)
