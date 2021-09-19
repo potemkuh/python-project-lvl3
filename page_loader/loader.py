@@ -1,7 +1,7 @@
+from os import name
 import os.path
 import requests
 import re
-
 
 link = 'https://ru.hexlet.io/courses'
 def download(link, dir=None):

@@ -1,6 +1,10 @@
-from page_loader import download
+from loader import download
+import tempfile
+import os
 
 
 def test_download():
-    data = download('https://ru.hexlet.io/courses', 'var/tmp')
-    assert data == 'var/tmp/ru-hexlet-io-courses.html'
+    url = 'https://ru.hexlet.io/courses'
+    with tempfile.TemporaryDirectory() as temp_dir:
+        test_path = os.path.join(temp_dir, 'ru-hexlet-io-courses.html')
+        assert download(url, temp_dir) ==  test_path
