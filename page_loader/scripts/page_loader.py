@@ -1,5 +1,5 @@
-from loader import download
-from parser import parse
+from page_loader.loader import download
+from page_loader.parser import parse
 
 
 def main():

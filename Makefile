@@ -8,4 +8,4 @@ package-install:
 	python -m pip install dist/*.whl
 
 loader:
-	poetry run loader
+	poetry run page_loader
