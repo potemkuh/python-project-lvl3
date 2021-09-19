@@ -1,4 +1,4 @@
-from loader import download
+from page_loader.loader import download
 import tempfile
 import os
 
