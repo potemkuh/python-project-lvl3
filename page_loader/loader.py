@@ -16,17 +16,13 @@ def download(link, dir=None):
     dirname  = str(dirname + '_files')
 
     full_path = os.path.join(os.getcwd(), dir)
-
+    path = os.path.join(full_path, filename)
     assets_path = os.path.join(full_path, dirname)
     if not os.path.exists(assets_path):
         os.mkdir(assets_path)
 
     updated_html = download_assets(html, link, dirname, assets_path)
 
-
-    url = link.replace("https://", "")
-    file_name = re.sub(r'[/.]', '-', url) + '.html'
-    path = os.path.join(dir, file_name)
     with open(path, 'w') as f:
         f.write(updated_html)
     return path
