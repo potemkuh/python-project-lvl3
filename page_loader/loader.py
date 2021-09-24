@@ -1,23 +1,26 @@
 import os.path
 import requests
 import re
-from page_loader.loader import download_assets
+from page_loader.download_asset import download_assets
 from urllib.parse import urlparse
 
 
-#link = 'https://ru.hexlet.io/courses'
 def download(link, dir=None):
     html = requests.get(link)
     html = html.text
 
+    #получение имени файла и дериктории
     filename, ext = url_to_slug_and_ext(link)
     filename = str(filename + ext)
     dirname, _ = url_to_slug_and_ext(link)
     dirname  = str(dirname + '_files')
-
+    print('1', filename, dirname)
+    
+    #пути файлов
     full_path = os.path.join(os.getcwd(), dir)
     path = os.path.join(full_path, filename)
     assets_path = os.path.join(full_path, dirname)
+    
     if not os.path.exists(assets_path):
         os.mkdir(assets_path)
 
