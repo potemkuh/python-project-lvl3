@@ -1,21 +1,22 @@
+import re
 from bs4 import BeautifulSoup
-from urllib.parse import urlparse, urljoin
+from urllib.parse import urljoin
 import requests
-from page_loader import loader
+from page_loader import get_name
 import os
 
 
 def download_assets(html, url, dirname, assets_path):
     soup = BeautifulSoup(html, 'html.parser')
-    tag_list = soup.find_all('img')
+    tag_list = soup.find_all(['img', 'link', 'script'])
     for source_tag in tag_list:
-        attribute_name = 'src'
+        attribute_name = find_attribute(source_tag.name)
         short_asset_url = source_tag.get(attribute_name)
         full_asset_url = urljoin(url + '/', short_asset_url)
-        filename, ext = loader.url_to_slug_and_ext(full_asset_url)
+        filename, ext = get_name.url_to_slug_and_ext(full_asset_url)
         filename = str(filename + ext)
         full_asset_path = os.path.join(assets_path, filename)
-        download_files(url, full_asset_path)
+        download_files(full_asset_url, full_asset_path)
         source_tag[attribute_name] = os.path.join(dirname,  filename )
 
     return soup.prettify(formatter="html5")
@@ -28,3 +29,8 @@ def download_files(url, full_asset_path):
 def save_file(data, path):
     with open(path, 'wb') as f:
         f.write(data)
+
+def find_attribute(tag):
+    if tag == 'link': return 'href'
+    if tag == 'script': return 'src'
+    if tag == 'img': return 'src'

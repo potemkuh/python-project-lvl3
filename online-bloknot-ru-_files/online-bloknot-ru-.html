@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8"/>
+	<title>Бесплатный онлайн блокнот для текстовых заметок</title>
+	<meta name="keywords" content="онлайн блокнот, online блокнот, текстовый блокнот, бесплатный блокнот, блокнот для заметок, блокнот для текста, скачать блокнот, блокнот для компьютера, программа блокнот"/>
+	<meta name="description" content="Сервис «Онлайн Блокнот» это бесплатный инструмент для быстрого сохранения текстовых заметок. Заметки безопасно хранятся в вашем браузере. Без регистрации и рекламы."/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<meta name="google-site-verification" content="tKNUK0yWuu1JfO8AZ7PwNziDEW5fQ6QpkrKQ8oX6riQ" />
+	<link href="img/favicon.ico" rel="shortcut icon" />
+	<link rel="alternate" hreflang="en" href="https://notepad-online.com/en/" />
+	<link rel="alternate" hreflang="fr" href="https://notepad-online.com/fr/" />
+	<link rel="alternate" hreflang="ru" href="https://online-bloknot.ru/" />
+	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+    <link href="css/default.css" rel="stylesheet"/>
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jstorage.js"></script>
+    <script src="js/Blob.js"></script>
+	<script src="js/FileSaver.js"></script>
+    <script src="js/jquery.wordexport.js"></script>
+    <script src="ckeditor/ckeditor.js"></script>
+	<script src="ckeditor/config.js"></script>
+	<script src="js/default.js"></script>
+</head>
+<body>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function (d, w, c) {
+    (w[c] = w[c] || []).push(function() {
+        try {
+            w.yaCounter22200998 = new Ya.Metrika({id:22200998,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true});
+        } catch(e) { }
+    });
+
+    var n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function () { n.parentNode.insertBefore(s, n); };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+    if (w.opera == "[object Opera]") {
+        d.addEventListener("DOMContentLoaded", f, false);
+    } else { f(); }
+})(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/22200998" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+    <div id="wrap">
+        <div id="header">
+            <div class="container-fluid text-center">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1>Онлайн блокнот</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12">
+                        
+                        <textarea id="note" class="form-control"></textarea>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+	<div id="footer">
+        <div class="container-fluid text-center">
+            <div class="row">
+                <div class="col-xs-12">
+					<div class="text-muted tac copyright">&copy; 2021 Онлайн блокнот &mdash; бесплатный блокнот для быстрых заметок. Язык: 
+					<div class="selector__language"><div class="dropup"><button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Русский<span class="caret"></span></button>
+					<ul class="dropdown-menu">
+						<li><a href="https://notepad-online.com/en/">English (Английский)</a></li>
+						<li><a href="https://notepad-online.com/fr/">Français (Французский)</a></li>
+						<li><a href="https://online-bloknot.ru/">Русский</a></li>
+					</ul></div></div></div>
+                </div>
+            </div>    
+            <div class="row">
+                <div class="col-xs-12">
+                    <a href="/">Блокнот</a>
+                    <a href="/info">Как это работает</a>
+                    <a href="/help">Помочь проекту</a>
+                    <a href="/discussion">Обсуждения</a>
+                    <a href="/contacts">Контакты</a>
+					<span>Поделиться:</span>
+					<div class="addthis_inline_share_toolbox"></div>
+                </div>	
+            </div>
+        </div>
+	</div>
+	<script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58af3a28eaa4be84"></script>
+</body>
+</html>
