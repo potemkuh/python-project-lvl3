@@ -11,6 +11,7 @@ def main():
         logging.info('Start download')
         download(args.url, args.output)
     except:
+        logging.error('ERROR')
         sys.exit(1)
 
 

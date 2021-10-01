@@ -13,7 +13,7 @@ def download(link, dir=None):
 # получение имени файла и дериктории
     filename = get_filename(link)
     dirname = get_dirname(link)
-  
+
 # пути файлов
     full_path = os.path.join(os.getcwd(), dir)
     path = os.path.join(full_path, filename)

@@ -4,6 +4,8 @@ import os
 
 
 def url_to_slug_and_ext(url):
+    if url.endswith('/'):
+        url = url[:-1]
     result_url_parse = urlparse(url)
     path, ext = os.path.splitext(result_url_parse.path)
     return (replace_chars(
@@ -12,8 +14,8 @@ def url_to_slug_and_ext(url):
     )
 
 
-def replace_chars(s):
-    return re.sub(re.compile(r'[^0-9a-zA-Z]+'), '-', s)
+def replace_chars(string):
+    return re.sub(re.compile(r'[^0-9a-zA-Z]+'), '-', string)
 
 
 def get_filename(url):

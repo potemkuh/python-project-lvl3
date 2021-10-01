@@ -1,9 +1,14 @@
-from requests import request
 from page_loader.loader import download
-from page_loader.download_asset import download_assets
 import tempfile
 import os
 from urllib.parse import urljoin
+import pytest
+from page_loader.get_name import (
+    url_to_slug_and_ext,
+    replace_chars,
+    get_filename,
+    get_dirname
+)
 
 
 ASSETS = [
@@ -24,13 +29,9 @@ ASSETS = [
         'file_name': 'site-com-blog-about.html',
     },
 ]
-BASE_URL = 'http://site.com/'
+BASE_URL = 'http://site.com'
 URL = 'http://site.com/blog/about.html'
-file_and_dir_name = 'site-com-blog-about-'
-
-
-def get_path(filename):
-    return os.path.join(os.getcwd(), 'test', 'fixture', filename)
+file_and_dir_name = 'site-com-blog-about'
 
 
 def test_download(requests_mock):
@@ -57,14 +58,48 @@ def test_download(requests_mock):
             asset_path = os.path.join(
                 temp_dir,
                 file_and_dir_name + '_files',
-                asset['file_name'],
-                )
+                asset['file_name'],)
             with open(asset_path, 'rb') as asset_file:
                 asset_content = asset_file.read()
-                with open(os.path.join(os.getcwd(),
-                                    'test',
-                                    'fixture',
-                                    'site-com-blog-about_files',
-                                    asset['file_name']), 'rb') as test_file:
+                with open(os.path.join(
+                            os.getcwd(),
+                            'test',
+                            'fixture',
+                            'site-com-blog-about_files',
+                    asset['file_name']), 'rb') as test_file:
                     test_asset_file = test_file.read()
                     assert asset_content == test_asset_file    
+
+
+def get_path(filename):
+    return os.path.join(os.getcwd(), 'test', 'fixture', filename)
+
+
+def test_url_to_slug_and_ext():
+    assert url_to_slug_and_ext(BASE_URL) == ('site-com', '.html')
+
+
+def test_replace_chars():
+    assert replace_chars(BASE_URL) == 'http-site-com'
+
+
+def test_error_dirname():
+    with pytest.raises(Exception):
+        assert download(URL, '/download')
+
+
+@pytest.mark.parametrize('code', [403, 404, 500, 501, 502])
+def test_errors_response(requests_mock, code):
+    url = 'http://testsite.test/' + str(code)
+    requests_mock.get(url, status_code=code)
+    with tempfile.TemporaryDirectory() as temp_dir:
+        with pytest.raises(Exception):
+            assert download(url, temp_dir)
+
+
+def test_dir_name():
+    assert get_dirname(BASE_URL) == 'site-com_files'
+
+
+def test_file_name():
+    assert get_filename(BASE_URL) == 'site-com.html'
