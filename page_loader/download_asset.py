@@ -1,14 +1,15 @@
-import re
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 import requests
 from page_loader import get_name
 import os
+from progress.bar import Bar
 
 
 def download_assets(html, url, dirname, assets_path):
     soup = BeautifulSoup(html, 'html.parser')
     tag_list = soup.find_all(['img', 'link', 'script'])
+    bar = Bar('Processing', max=len(tag_list))
     for source_tag in tag_list:
         attribute_name = find_attribute(source_tag.name)
         short_asset_url = source_tag.get(attribute_name)
@@ -17,9 +18,12 @@ def download_assets(html, url, dirname, assets_path):
         filename = str(filename + ext)
         full_asset_path = os.path.join(assets_path, filename)
         download_files(full_asset_url, full_asset_path)
-        source_tag[attribute_name] = os.path.join(dirname,  filename )
+        source_tag[attribute_name] = os.path.join(dirname, filename)
+        bar.next()
+    bar.finish()
 
     return soup.prettify(formatter="html5")
+
 
 def download_files(url, full_asset_path):
     response = requests.get(url, stream=True)
@@ -30,7 +34,11 @@ def save_file(data, path):
     with open(path, 'wb') as f:
         f.write(data)
 
+
 def find_attribute(tag):
-    if tag == 'link': return 'href'
-    if tag == 'script': return 'src'
-    if tag == 'img': return 'src'
+    if tag == 'link':
+        return 'href'
+    if tag == 'script':
+        return 'src'
+    if tag == 'img':
+        return 'src'

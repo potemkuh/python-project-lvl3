@@ -10,15 +10,15 @@ def download(link, dir=None):
     html.raise_for_status()
     html = html.text
 
-    #получение имени файла и дериктории
+# получение имени файла и дериктории
     filename = get_filename(link)
     dirname = get_dirname(link)
-    
-    #пути файлов
+  
+# пути файлов
     full_path = os.path.join(os.getcwd(), dir)
     path = os.path.join(full_path, filename)
     assets_path = os.path.join(full_path, dirname)
-    
+
     if not os.path.exists(assets_path):
         os.mkdir(assets_path)
 

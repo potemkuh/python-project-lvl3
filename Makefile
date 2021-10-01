@@ -9,3 +9,6 @@ package-install:
 
 loader:
 	poetry run page_loader
+
+make lint:
+	poetry run flake8
