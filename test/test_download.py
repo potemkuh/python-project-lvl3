@@ -10,11 +10,27 @@ ASSETS = [
     {
         'url_path': '/blog/about/assets/styles.css',
         'file_name': 'site-com-blog-about-assets-styles.css',
-    }]
+    },
+    {
+        'url_path': '/photos/me.jpg',
+        'file_name': 'site-com-photos-me.jpg',
+    },
+    {
+        'url_path': '/assets/scripts.js',
+        'file_name': 'site-com-assets-scripts.js',
+    },
+    {
+        'url_path': '/blog/about',
+        'file_name': 'site-com-blog-about.html',
+    },
+]
 BASE_URL = 'http://site.com/'
 URL = 'http://site.com/blog/about.html'
-file_and_dir_name = 'site-com-blog-about'
+file_and_dir_name = 'site-com-blog-about-'
 
+
+def get_path(filename):
+    return os.path.join(os.getcwd(), 'test', 'fixture', filename)
 
 
 def test_download(requests_mock):
@@ -52,7 +68,3 @@ def test_download(requests_mock):
                                     asset['file_name']), 'rb') as test_file:
                     test_asset_file = test_file.read()
                     assert asset_content == test_asset_file    
-
-
-def get_path(filename):
-    return os.path.join(os.getcwd(), 'test', 'fixture', filename)
