@@ -26,7 +26,6 @@ def download(link, dir=None):
 
     with open(path, 'w') as f:
         f.write(updated_html)
-    print(path)
 
     logging.info('requested url: {0}'.format(link))
     logging.info('output path: {0}'.format(full_path))
