@@ -22,7 +22,7 @@ def download_assets(html, url, dirname, assets_path):
         bar.next()
     bar.finish()
 
-    return soup.prettify(formatter="html5")
+    return soup.prettify()
 
 
 def download_files(url, full_asset_path):
