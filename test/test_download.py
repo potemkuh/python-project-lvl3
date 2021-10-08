@@ -90,7 +90,7 @@ def test_error_dirname():
 
 @pytest.mark.parametrize('code', [403, 404, 500, 501, 502])
 def test_errors_response(requests_mock, code):
-    url = 'http://testsite.test/' + str(code)
+    url = 'http://test_site.test/' + str(code)
     requests_mock.get(url, status_code=code)
     with tempfile.TemporaryDirectory() as temp_dir:
         with pytest.raises(Exception):
