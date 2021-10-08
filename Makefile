@@ -10,5 +10,11 @@ package-install:
 loader:
 	poetry run page_loader
 
-make lint:
-	poetry run flake8
+lint:
+  poetry run flake8 page_loader
+
+test:
+  poetry run pytest -vv
+
+test-coverage:
+  poetry run pytest --cov=page_loader --cov-report xml
