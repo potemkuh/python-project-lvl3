@@ -9,7 +9,8 @@ def main():
         args = parse()
         logging.basicConfig(level=logging.INFO)
         logging.info('Start download')
-        download(args.url, args.output)
+        filepath = download(args.url, args.output)
+        print(f"Page was downloaded as '{filepath}'")
     except Exception as e:
         logging.critical(e)
         sys.exit(1)
