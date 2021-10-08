@@ -9,7 +9,7 @@ def main():
         args = parse()
         logging.basicConfig(level=logging.INFO)
         logging.info('Start download')
-        download(args.url, args.output)
+        download(args.output, args.url)
     except:
         logging.error('ERROR')
         sys.exit(1)
