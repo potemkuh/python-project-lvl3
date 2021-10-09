@@ -63,13 +63,13 @@ def test_download(requests_mock):
             with open(asset_path, 'rb') as asset_file:
                 asset_content = asset_file.read()
                 with open(os.path.join(
-                    os.getcwd(),
-                    'test',
-                    'fixture',
-                    'site-com-blog-about_files',
-                    asset['file_name']), 'rb') as test_file:
-                        test_asset_file = test_file.read()
-                        assert asset_content == test_asset_file    
+                        os.getcwd(),
+                        'test',
+                        'fixture',
+                        'site-com-blog-about_files',
+                        asset['file_name']), 'rb') as test_file:
+                    test_asset_file = test_file.read()
+                    assert asset_content == test_asset_file
 
 
 def get_path(filename):
