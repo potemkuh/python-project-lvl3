@@ -1,9 +1,9 @@
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse
-import requests, os
+import requests
+import os
 from page_loader import get_name
 from progress.bar import Bar
-
 
 
 def download_assets(html, url, dirname, assets_path):

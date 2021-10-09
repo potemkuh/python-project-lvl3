@@ -1,3 +1,4 @@
+from page_loader.download_asset import find_attribute
 from page_loader.loader import download
 import tempfile
 import os
@@ -103,3 +104,8 @@ def test_dir_name():
 
 def test_file_name():
     assert get_filename(BASE_URL) == 'site-com.html'
+
+
+@pytest.mark.parametrize('tag', ['link', 'script', 'img'])
+def test_attribute(tag):
+    assert find_attribute(tag) == 'href' or 'src'
