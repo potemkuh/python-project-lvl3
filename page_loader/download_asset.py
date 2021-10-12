@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse
 import requests
 import os
-from page_loader import get_name
+from page_loader.get_name import get_filename
 from progress.bar import Bar
 
 
@@ -12,11 +12,12 @@ def download_assets(html, url, dirname, assets_path):
     bar = Bar('Processing', max=len(tag_list))
     for source_tag in tag_list:
         attribute_name = find_attribute(source_tag.name)
+        if attribute_name is None:
+            continue
         short_asset_url = source_tag.get(attribute_name)
         full_asset_url = urljoin(url + '/', short_asset_url)
-        filename, ext = get_name.url_to_slug_and_ext(full_asset_url)
         if urlparse(full_asset_url).netloc == urlparse(url).netloc:
-            filename = str(filename + ext)
+            filename = str(get_filename(full_asset_url))
             full_asset_path = os.path.join(assets_path, filename)
             download_files(full_asset_url, full_asset_path)
             source_tag[attribute_name] = os.path.join(dirname, filename)

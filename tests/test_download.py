@@ -39,7 +39,7 @@ def test_download(requests_mock):
     for asset in ASSETS:
         asset_url = urljoin(BASE_URL, asset['url_path'])
         asset_path = os.path.join(os.getcwd(),
-                                  'test',
+                                  'tests',
                                   'fixture',
                                   'site-com-blog-about_files',
                                   asset['file_name'],
@@ -64,7 +64,7 @@ def test_download(requests_mock):
                 asset_content = asset_file.read()
                 with open(os.path.join(
                         os.getcwd(),
-                        'test',
+                        'tests',
                         'fixture',
                         'site-com-blog-about_files',
                         asset['file_name']), 'rb') as test_file:
@@ -73,7 +73,7 @@ def test_download(requests_mock):
 
 
 def get_path(filename):
-    return os.path.join(os.getcwd(), 'test', 'fixture', filename)
+    return os.path.join(os.getcwd(), 'tests', 'fixture', filename)
 
 
 def test_url_to_slug_and_ext():

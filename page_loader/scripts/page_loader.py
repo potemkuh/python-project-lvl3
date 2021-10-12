@@ -5,10 +5,10 @@ import sys
 
 
 def main():
+    args = parse()
+    logging.basicConfig(level=logging.INFO)
+    logging.info('Start download')
     try:
-        args = parse()
-        logging.basicConfig(level=logging.INFO)
-        logging.info('Start download')
         filepath = download(args.url, args.output)
         print(f"Page was downloaded as '{filepath}'")
     except Exception as e:

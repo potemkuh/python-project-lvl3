@@ -8,10 +8,8 @@ def url_to_slug_and_ext(url):
         url = url[:-1]
     result_url_parse = urlparse(url)
     path, ext = os.path.splitext(result_url_parse.path)
-    return (replace_chars(
-        result_url_parse.netloc + path),
-        ext if ext else '.html'
-    )
+    return (replace_chars(result_url_parse.netloc + path),
+            ext if ext else '.html')
 
 
 def replace_chars(string):
