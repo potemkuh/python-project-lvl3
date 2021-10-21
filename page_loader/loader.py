@@ -8,7 +8,6 @@ import logging
 def download(url, output_path=None):
     response = requests.get(url)
     response.raise_for_status()
-    html = response.text
 
     # получение имени файла и дериктории
     filename = get_filename(url)
@@ -22,7 +21,7 @@ def download(url, output_path=None):
     if not os.path.exists(assets_path):
         os.mkdir(assets_path)
 
-    updated_html = download_assets(html, url, dirname, assets_path)
+    updated_html = download_assets(response.text, url, dirname, assets_path)
 
     with open(path_file, 'w') as f:
         f.write(updated_html)

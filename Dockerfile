@@ -1,7 +1,15 @@
 FROM python
 
+RUN apt update
+
+RUN pip install poetry
+
+#RUN cd /app && poetry install
+
+RUN /home ls
+
 WORKDIR /app
 
 COPY . .
 
-CMD ['python', 'page_loader/scripts/page_loader.py']
+CMD echo “Hello World”
