@@ -8,6 +8,7 @@ import logging
 def download(url, output_path=None):
     response = requests.get(url)
     response.raise_for_status()
+    logging.info('requested url: {0}'.format(url))
 
     # получение имени файла и дериктории
     filename = get_filename(url)
@@ -26,5 +27,4 @@ def download(url, output_path=None):
     with open(path_file, 'w') as f:
         f.write(updated_html)
     logging.info('output path: {0}'.format(full_path))
-    logging.info('requested url: {0}'.format(url))
     return path_file
